@@ -1,13 +1,12 @@
 import React from 'react';
-import { FormProvider, useForm } from 'react-hook-form';
 import { AuthProvider } from './AuthContext';
+import { ToastProvider } from './ToastContext';
 
 const AppProvider: React.FC = ({ children }) => {
-  const methods = useForm();
   return (
-    <FormProvider {...methods}>
+    <ToastProvider>
       <AuthProvider>{children} </AuthProvider>
-    </FormProvider>
+    </ToastProvider>
   );
 };
 

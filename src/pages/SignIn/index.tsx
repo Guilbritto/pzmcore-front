@@ -1,64 +1,65 @@
 import React, { useCallback } from 'react';
-import { useFormContext } from 'react-hook-form';
+import { FormProvider, useForm, useFormContext } from 'react-hook-form';
+import { useHistory } from 'react-router-dom';
 import logo from '../../assets/images/logoligthTheme.svg';
 import Input from '../../components/Input';
-import { BoxSignIn } from './styles';
+import { BoxSignIn, Container } from './styles';
 
-interface SignInProps {
-  isLogin: boolean;
-  setIsLogin(flag: boolean): void;
-}
-
-const SignIn: React.FC<SignInProps> = ({ isLogin, setIsLogin }) => {
-  const { handleSubmit } = useFormContext();
-  const onSubmit = useCallback(data => console.log(data), []);
+const SignIn: React.FC = () => {
+  const methods = useForm();
+  const onSubmit = useCallback(data => {}, []);
+  const history = useHistory();
   return (
-    <BoxSignIn isLogin={isLogin}>
-      <header>
-        <img src={logo} alt="logo" />
-      </header>
-      <form onSubmit={handleSubmit(onSubmit)}>
-        <span>
-          <h1>Sign Up</h1>
-        </span>
+    <Container>
+      <BoxSignIn>
+        <header>
+          <img src={logo} alt="logo" />
+        </header>
+        <FormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
+            <span>
+              <h1>Sign Up</h1>
+            </span>
 
-        <Input
-          placeHolder="Name"
-          name="name"
-          validate={{
-            required: true,
-          }}
-        />
+            <Input
+              placeHolder="Name"
+              name="name"
+              validate={{
+                required: true,
+              }}
+            />
 
-        <Input
-          placeHolder="E-mail"
-          name="email"
-          validate={{
-            required: true,
-            pattern: {
-              value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-              message: 'Invalid email address',
-            },
-          }}
-        />
+            <Input
+              placeHolder="E-mail"
+              name="email"
+              validate={{
+                required: true,
+                pattern: {
+                  value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                  message: 'Invalid email address',
+                },
+              }}
+            />
 
-        <Input
-          placeHolder="Password"
-          name="password"
-          type="password"
-          validate={{
-            required: true,
-          }}
-        />
-        <footer>
-          <button type="submit"> Register </button>
-          <button type="button" onClick={() => setIsLogin(false)}>
-            Sign In
-          </button>
-        </footer>
-      </form>
-      <footer></footer>
-    </BoxSignIn>
+            <Input
+              placeHolder="Password"
+              name="password"
+              type="password"
+              validate={{
+                required: true,
+              }}
+            />
+            <footer>
+              <button type="submit"> Register </button>
+              <button type="button" onClick={() => history.push('/')}>
+                Sign In
+              </button>
+            </footer>
+          </form>
+        </FormProvider>
+        <footer></footer>
+      </BoxSignIn>
+    </Container>
   );
 };
 

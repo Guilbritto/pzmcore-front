@@ -4,7 +4,7 @@ import { Container } from './styles';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   placeHolder?: string;
-  validate: object;
+  validate?: object;
   name: string;
 }
 
@@ -20,10 +20,8 @@ const Input: React.FC<InputProps> = ({
   const [errorMessage, setErrorMessage] = useState('');
 
   useEffect(() => {
-    console.log(errors[name]);
     if (errors[name]) {
       setError(old => {
-        console.log('Setando mensagem de erro ', errors[name].message);
         setErrorMessage(errors[name].message);
         return true;
       });
@@ -34,8 +32,6 @@ const Input: React.FC<InputProps> = ({
       });
     }
   }, [errors]);
-
-  useEffect(() => console.log(errorMessage), [errorMessage]);
 
   const handleBlur = useCallback(evt => {
     if (evt.target.value.length > 0) {
@@ -58,7 +54,7 @@ const Input: React.FC<InputProps> = ({
           <span className="content-name"> {placeHolder}</span>
         </label>
       </div>
-      <p className="errorMessage">{errorMessage}</p>
+      {errorMessage && <p className="errorMessage">{errorMessage}</p>}
     </Container>
   );
 };

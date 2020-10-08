@@ -1,26 +1,38 @@
 import { darken } from 'polished';
-import styled, { css } from 'styled-components';
-import { SwitchLoginProsp } from '../Login/styles';
+import styled, { keyframes } from 'styled-components';
+import LoginImage from '../../assets/images/homepageImage.jpg';
 
-export const BoxSignIn = styled.aside<SwitchLoginProsp>`
+export const Container = styled.div`
+  height: 100vh;
+  background-image: url(${LoginImage});
+  background-size: cover;
+`;
+
+const appearsFromLeft = keyframes`
+  from{
+    opacity 0;
+    transform: translateX(-50px);
+  }
+  to{
+    opacity: 1;
+    tansform: translateX(0)
+  }
+`;
+
+export const BoxSignIn = styled.aside`
+  animation: ${appearsFromLeft} 1s;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 0;
   background: ${props => props.theme.colors.background};
   position: fixed;
-  padding: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   transition: all 0.4s ease;
-  ${props =>
-    !props.isLogin &&
-    css`
-      width: 500px;
-      padding: 30px;
-    `}
+  width: 500px;
+  padding: 30px;
 
   header {
     display: flex;
@@ -32,6 +44,7 @@ export const BoxSignIn = styled.aside<SwitchLoginProsp>`
       height: 50px;
     }
   }
+
   form {
     display: flex;
     justify-content: space-between;
