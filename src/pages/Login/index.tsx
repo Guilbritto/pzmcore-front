@@ -1,14 +1,19 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useState } from 'react';
 import { Container, BoxLogin } from './styles';
 import logo from '../../assets/images/logoligthTheme.svg';
 
-import { useForm, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
 import Input from '../../components/Input';
-import { useEffect } from 'react';
+import SignIn from '../SignIn';
 
 const Login: React.FC = () => {
   const { handleSubmit } = useFormContext();
+  const [isLogin, setIsLogin] = useState(true);
+
+  const backToLogin = useCallback(() => {
+    setIsLogin(true);
+  }, []);
 
   const onSubmit = useCallback(async (data: any) => {
     // const user = await api.post(LOGIN, data);
@@ -17,7 +22,8 @@ const Login: React.FC = () => {
 
   return (
     <Container>
-      <BoxLogin>
+      <SignIn isLogin={isLogin} setIsLogin={backToLogin} />
+      <BoxLogin isLogin={isLogin}>
         <header>
           <img src={logo} alt="logo" />
         </header>
@@ -28,7 +34,7 @@ const Login: React.FC = () => {
 
           <Input
             placeHolder="E-mail"
-            name="email"
+            name="login"
             validate={{
               required: true,
               pattern: {
@@ -39,7 +45,7 @@ const Login: React.FC = () => {
           />
           <Input
             placeHolder="Password"
-            name="password"
+            name="loginPassword"
             type="password"
             validate={{
               required: true,
@@ -47,7 +53,10 @@ const Login: React.FC = () => {
           />
           <footer>
             <button type="submit"> Sign In </button>
-            <button type="button"> Sign Up </button>
+            <button type="button" onClick={() => setIsLogin(false)}>
+              {' '}
+              Sign Up{' '}
+            </button>
           </footer>
         </form>
         <footer></footer>

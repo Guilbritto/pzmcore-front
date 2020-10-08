@@ -8,9 +8,6 @@ interface InputStyleProps {
 export const Container = styled.div<InputStyleProps>`
   width: 100%;
   margin-top: 20px;
-  & + & {
-    margin-bottom: 20px;
-  }
 
   .form {
     width: 100%;
