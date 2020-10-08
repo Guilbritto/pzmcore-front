@@ -7,6 +7,7 @@ export const Container = styled.div`
   background-image: url(${LoginImage});
   background-size: cover;
 `;
+
 const appearsFromRight = keyframes`
   from{
     opacity 0;

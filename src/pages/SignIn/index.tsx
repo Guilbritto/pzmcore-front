@@ -3,12 +3,22 @@ import { FormProvider, useForm, useFormContext } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import logo from '../../assets/images/logoligthTheme.svg';
 import Input from '../../components/Input';
+import { useUser } from '../../hooks/UserContext';
 import { BoxSignIn, Container } from './styles';
 
 const SignIn: React.FC = () => {
   const methods = useForm();
-  const onSubmit = useCallback(data => {}, []);
   const history = useHistory();
+  const {signUp } = useUser();
+  
+  const onSubmit = useCallback( async (data) => {
+    
+    await signUp(data);
+    console.log('cadastrou')
+
+  }, []);
+  
+  
   return (
     <Container>
       <BoxSignIn>
