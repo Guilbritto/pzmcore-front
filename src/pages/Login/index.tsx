@@ -10,10 +10,9 @@ import {
 } from 'react-hook-form';
 
 import Input from '../../components/Input';
-import SignIn from '../SignIn';
 import { useAuth } from '../../hooks/AuthContext';
 import { useToast } from '../../hooks/ToastContext';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 
 const Login: React.FC = () => {
   const { signIn } = useAuth();
@@ -21,6 +20,7 @@ const Login: React.FC = () => {
   const { addToast } = useToast();
 
   const history = useHistory();
+
   const onSubmit = useCallback(
     async (data: any) => {
       const result = await signIn(data.email, data.password);
@@ -62,13 +62,20 @@ const Login: React.FC = () => {
             />
             <footer>
               <button type="submit"> Sign In </button>
-              <button type="button" onClick={() => history.push('/signin')}>
+              <button id="signUp" type="button" onClick={() => history.push('/signin')}>
                 Sign Up
               </button>
+              <div>
+                <Link to='/forgot'>
+                  Forgot Password?
+                </Link>
+              </div>
             </footer>
           </form>
         </FormProvider>
-        <footer></footer>
+        <footer>
+          
+        </footer>
       </BoxLogin>
     </Container>
   );

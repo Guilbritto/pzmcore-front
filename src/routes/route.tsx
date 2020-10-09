@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAuth } from '../hooks/AuthContext';
 import {
   Route as ReactDOMRoute,
@@ -15,9 +15,9 @@ const Route: React.FC<RouteProps> = ({
   isPrivate = false,
   component: Component,
   ...rest
-}) => {
+}) => { 
   const { user } = useAuth();
-
+  
   return (
     <ReactDOMRoute
       {...rest}

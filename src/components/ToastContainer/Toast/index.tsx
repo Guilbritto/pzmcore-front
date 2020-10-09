@@ -34,7 +34,7 @@ const Toast: React.FC<IToastProps> = ({ message, style }) => {
       type={message.type}
       hasDescription={!!message.description}
     >
-      <FiAlertCircle size={20} />
+      {icons[message.type || 'info']}
 
       <div>
         <strong>{message.title}</strong>

@@ -81,10 +81,20 @@ export const BoxLogin = styled.aside`
         background: ${props => darken(0.03, props.theme.colors.background)};
       }
 
-      button:last-child {
+      button[id="signUp"]{
         border: 2px solid ${props => props.theme.colors.primary};
         background: transparent;
         color: ${props => props.theme.colors.primary};
+      }
+      div{
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+
+        a{
+          text-decoration: none;
+          color: ${props => props.theme.colors.primary}
+        }
       }
     }
   }

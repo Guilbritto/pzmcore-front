@@ -12,10 +12,7 @@ const SignIn: React.FC = () => {
   const {signUp } = useUser();
   
   const onSubmit = useCallback( async (data) => {
-    
     await signUp(data);
-    console.log('cadastrou')
-
   }, []);
   
   

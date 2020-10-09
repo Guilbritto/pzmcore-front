@@ -38,8 +38,10 @@ const AuthProvider: React.FC = ({ children }) => {
 
       localStorage.setItem('@pzmcore:token', token);
       localStorage.setItem('@pzmcore:user', JSON.stringify(user));
+      setData({...data, user: user})
       return true;
     } catch (err) {
+      console.log(err)
       addToast({
         type: err.response.data.status,
         title: 'Login Error',
