@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  margin: 30px 0;
   input{
     width: 40px;
     height: 45px;

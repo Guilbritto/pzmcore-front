@@ -21,7 +21,7 @@ const Forgot: React.FC = () => {
     async (data: any) => {
       await forgotPassword(data.email);
       
-      history.push('/forgot/verification')
+      history.push('/forgot/verification', {email: data.email})
     },
     [],
   );

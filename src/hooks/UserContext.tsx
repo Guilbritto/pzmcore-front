@@ -1,6 +1,6 @@
 import React, { createContext, useCallback, useContext } from 'react';
 import api from '../services/api';
-import { FORGOT_PASSWORD, SIGNUP } from '../utils/urls';
+import { FORGOT_PASSWORD, FORGOT_PASSWORD_CHANGE, FORGOT_PASSWORD_VALIDATE, SIGNUP } from '../utils/urls';
 import { useToast } from './ToastContext';
 
 
@@ -10,10 +10,17 @@ interface UserSignUpProps {
   password: string;
 }
 
+interface IChangePasswordRequest{
+  old: string;
+  new: string;
+}
 interface UserContextData {
   signUp(data: UserSignUpProps): Promise<void>
   forgotPassword(email: string): Promise<void>
+  forgotPasswordCheckCode(email:string, code:string): Promise<boolean>
+  forgotChangePassword(email:string, password: IChangePasswordRequest, code: string): Promise<boolean>
 }
+
 const UserContext = createContext<UserContextData>({} as UserContextData);
 
 const UserProvider: React.FC = ({children}) => {
@@ -51,15 +58,41 @@ const UserProvider: React.FC = ({children}) => {
       addToast({
         title: 'Error',
         description: err.response.data.message,
-        type: err.response.data.type,
+        type: 'error',
       })
     }
     
   },[])
 
+  const forgotPasswordCheckCode = useCallback(async (email: string, code: string) => {
+    try{
+      const response = await api.post(FORGOT_PASSWORD_VALIDATE, {email, code});
+      return response.data.validate;
+    }catch(err){
+      addToast({
+        title: 'Error',
+        description: err.response.data.message,
+        type: 'error',
+      })
+      return false;
+    }
+  },[])
 
+  const forgotChangePassword = useCallback(async (email: string, password :IChangePasswordRequest, code: string) => {
+    try{
+      const response = await api.patch(FORGOT_PASSWORD_CHANGE, {email, password, code});
+      return true;
+    }catch(err){
+      addToast({
+        title: 'Error',
+        description: err.response.data.message,
+        type: 'error',
+      })
+      return false;
+    }
+  },[])
   return (
-  <UserContext.Provider value={{signUp, forgotPassword}}>
+  <UserContext.Provider value={{signUp, forgotPassword, forgotPasswordCheckCode, forgotChangePassword}}>
     {children}
   </UserContext.Provider>
   )
