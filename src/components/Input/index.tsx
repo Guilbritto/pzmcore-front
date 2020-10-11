@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { FieldElement, useForm, useFormContext } from 'react-hook-form';
+import {  useFormContext } from 'react-hook-form';
 import { Container } from './styles';
 
 interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
@@ -31,7 +31,7 @@ const Input: React.FC<InputProps> = ({
         return false;
       });
     }
-  }, [errors]);
+  }, [errors, name]);
 
   const handleBlur = useCallback(evt => {
     if (evt.target.value.length > 0) {

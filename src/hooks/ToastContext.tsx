@@ -1,5 +1,4 @@
 import React, { createContext, useCallback, useContext, useState } from 'react';
-import { flattenDiagnosticMessageText } from 'typescript';
 import { uuid } from 'uuidv4';
 import ToastContainer from '../components/ToastContainer';
 

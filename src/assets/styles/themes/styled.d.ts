@@ -12,5 +12,9 @@ declare module 'styled-components' {
       text: string;
       error: string;
     };
+    header: {
+      color: string;
+      background: string;
+    }
   }
 }

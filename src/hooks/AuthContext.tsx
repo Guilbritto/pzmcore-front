@@ -1,6 +1,4 @@
-import { AxiosError } from 'axios';
 import React, { createContext, useCallback, useContext, useState } from 'react';
-import { useHistory } from 'react-router-dom';
 import api from '../services/api';
 import { LOGIN } from '../utils/urls';
 import { useToast } from './ToastContext';
@@ -8,7 +6,7 @@ import { useToast } from './ToastContext';
 export interface AuthContextData {
   signIn(email: string, password: string): Promise<boolean>;
   signOut(): void;
-  user: object;
+  user: any;
 }
 
 export interface AuthState {
@@ -41,7 +39,6 @@ const AuthProvider: React.FC = ({ children }) => {
       setData({...data, user: user})
       return true;
     } catch (err) {
-      console.log(err)
       addToast({
         type: err.response.data.status,
         title: 'Login Error',
@@ -49,7 +46,7 @@ const AuthProvider: React.FC = ({ children }) => {
       });
       return false;
     }
-  }, []);
+  }, [addToast , data]);
 
   const signOut = useCallback(() => {
     localStorage.removeItem('@pzmcore:token');

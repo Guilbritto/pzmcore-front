@@ -1,23 +1,19 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { Container, BoxLogin } from './styles';
 import logo from '../../assets/images/logoligthTheme.svg';
 
 import {
   FormProvider,
-  SubmitHandler,
   useForm,
-  useFormContext,
 } from 'react-hook-form';
 
 import Input from '../../components/Input';
 import { useAuth } from '../../hooks/AuthContext';
-import { useToast } from '../../hooks/ToastContext';
 import { Link, useHistory } from 'react-router-dom';
 
 const Login: React.FC = () => {
   const { signIn } = useAuth();
   const methods = useForm();
-  const { addToast } = useToast();
 
   const history = useHistory();
 
@@ -25,10 +21,10 @@ const Login: React.FC = () => {
     async (data: any) => {
       const result = await signIn(data.email, data.password);
       if (result) {
-        history.push('/dashboard');
+        history.push('/home');
       }
     },
-    [addToast],
+    [history, signIn],
   );
 
   return (

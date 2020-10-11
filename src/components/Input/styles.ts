@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import { darken } from 'polished';
 interface InputStyleProps {
   filled: boolean;
   setError: boolean;

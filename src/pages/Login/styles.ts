@@ -1,5 +1,5 @@
 import { darken } from 'polished';
-import styled, { css, keyframes } from 'styled-components';
+import styled, {  keyframes } from 'styled-components';
 import LoginImage from '../../assets/images/homepageImage.jpg';
 
 export const Container = styled.div`

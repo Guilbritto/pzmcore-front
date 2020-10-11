@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback } from 'react';
 import { Container } from './styles';
 import logo from '../../assets/images/logoligthTheme.svg';
 
@@ -23,7 +23,7 @@ const Forgot: React.FC = () => {
       
       history.push('/forgot/verification', {email: data.email})
     },
-    [],
+    [forgotPassword, history],
   );
 
   return <Container>

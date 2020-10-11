@@ -8,5 +8,10 @@ export default {
     background: '#F5F5F5',
     text: '#333',
     error: '#FF1129',
+    
   },
+  header: {
+    color: '#EA9010',
+    background: '#e1e1e1'
+  }
 };

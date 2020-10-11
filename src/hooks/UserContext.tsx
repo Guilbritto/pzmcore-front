@@ -24,8 +24,7 @@ const UserProvider: React.FC = ({children}) => {
 
   const signUp = useCallback(async ({name, email, password}: UserSignUpProps)=> {
     try{
-      console.log('cheguei aqui')
-      const response = await api.post(SIGNUP, {name, email, password})
+      await api.post(SIGNUP, {name, email, password})
       addToast({
         title: 'User Created',
         type: 'success'
@@ -36,15 +35,12 @@ const UserProvider: React.FC = ({children}) => {
         type: err.response.data.status,
         description: err.response.data.message
       })
-      console.log(err.response)
     }
-    }, [])
+    }, [addToast])
   
   const forgotPassword = useCallback(async (email: string) => {
     try{
-
-      const response = await api.post(FORGOT_PASSWORD, {email}) 
-      console.log(response);
+      await api.post(FORGOT_PASSWORD, {email}) 
       addToast({
         title: 'Confirmation sended',
         description: 'Sended to yout email a confirmation code. Please check your email!',
@@ -58,7 +54,7 @@ const UserProvider: React.FC = ({children}) => {
       })
     }
     
-  },[])
+  },[addToast])
 
   const forgotPasswordCheckCode = useCallback(async (email: string, code: string) => {
     try{
@@ -72,11 +68,11 @@ const UserProvider: React.FC = ({children}) => {
       })
       return false;
     }
-  },[])
+  },[addToast])
 
   const forgotChangePassword = useCallback(async (email: string, password :string, code: string) => {
     try{
-      const response = await api.patch(FORGOT_PASSWORD_CHANGE, {email, password, code});
+      await api.patch(FORGOT_PASSWORD_CHANGE, {email, password, code});
       return true;
     }catch(err){
       addToast({
@@ -86,7 +82,7 @@ const UserProvider: React.FC = ({children}) => {
       })
       return false;
     }
-  },[])
+  },[addToast])
   return (
   <UserContext.Provider value={{signUp, forgotPassword, forgotPasswordCheckCode, forgotChangePassword}}>
     {children}

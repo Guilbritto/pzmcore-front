@@ -22,7 +22,7 @@ const VerificationCode: React.FC = () => {
         history.push('/forgot/redefine', {email: email, code: checkCode.split(" ").join('')})
       }
     },
-    [checkCode, forgotPasswordCheckCode],
+    [checkCode, forgotPasswordCheckCode, history, location.state],
   );
     
   return <Container>

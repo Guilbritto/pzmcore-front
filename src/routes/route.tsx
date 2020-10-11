@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { useAuth } from '../hooks/AuthContext';
 import {
   Route as ReactDOMRoute,
@@ -23,11 +23,11 @@ const Route: React.FC<RouteProps> = ({
       {...rest}
       render={({ location }) => {
         return isPrivate === !!user ? (
-          <Component />
+            <Component />
         ) : (
           <Redirect
             to={{
-              pathname: isPrivate ? '/' : '/dashboard',
+              pathname: isPrivate ? '/' : '/home',
               state: { from: location },
             }}
           />

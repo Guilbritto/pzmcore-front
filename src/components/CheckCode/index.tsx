@@ -1,4 +1,4 @@
-import React, { ChangeEvent, createRef,  InputHTMLAttributes,  useCallback,  useEffect,  useState } from 'react';
+import React, {  createRef,   useCallback,  useEffect,  useState } from 'react';
 
 import { Container } from './styles';
 
@@ -8,7 +8,6 @@ interface CheckCodeProps{
 
 const CheckCode: React.FC<CheckCodeProps> = ({setValue}) => {
     const divRef = createRef<HTMLDivElement>()
-    const [text, setText] = useState<any>({} as any);
     const [value1, setValue1] = useState('')
     const [value2, setValue2] = useState('')
     const [value3, setValue3] = useState('')
@@ -20,7 +19,7 @@ const CheckCode: React.FC<CheckCodeProps> = ({setValue}) => {
         
     useEffect(() => {
         setValue(`${value1} ${value2} ${value3} ${value4} ${value5} ${value6} ${value7} ${value8}`)
-    }, [value1, value2, value3, value4,value5, value6,value7, value8])
+    }, [value1, value2, value3, value4,value5, value6,value7, value8, setValue])
 
     const startInput = useCallback((evt) => {
         const container = evt.currentTarget;
@@ -30,6 +29,7 @@ const CheckCode: React.FC<CheckCodeProps> = ({setValue}) => {
             var myLength = target.value.length;
             if (myLength >= maxLength) {
                 var next = target;
+                // eslint-disable-next-line
                 while (next = next.nextElementSibling) {
                     if (next == null)
                         break;
@@ -42,6 +42,7 @@ const CheckCode: React.FC<CheckCodeProps> = ({setValue}) => {
             // Move to previous field if empty (user pressed backspace)
             else if (myLength === 0) {
                 var previous = target;
+                // eslint-disable-next-line
                 while (previous = previous.previousElementSibling) {
                     if (previous == null)
                         break;
@@ -55,7 +56,6 @@ const CheckCode: React.FC<CheckCodeProps> = ({setValue}) => {
     }, [])
 
 
-    useEffect(() => console.log(text), [text])
 
     return <Container ref={divRef} onFocus={startInput} >
         <input type="text" id="1" maxLength={1} value={value1} onChange={evt => setValue1(evt.target.value)} />
