@@ -10,15 +10,11 @@ interface UserSignUpProps {
   password: string;
 }
 
-interface IChangePasswordRequest{
-  old: string;
-  new: string;
-}
 interface UserContextData {
   signUp(data: UserSignUpProps): Promise<void>
   forgotPassword(email: string): Promise<void>
   forgotPasswordCheckCode(email:string, code:string): Promise<boolean>
-  forgotChangePassword(email:string, password: IChangePasswordRequest, code: string): Promise<boolean>
+  forgotChangePassword(email:string, password: string, code: string): Promise<boolean>
 }
 
 const UserContext = createContext<UserContextData>({} as UserContextData);
@@ -78,7 +74,7 @@ const UserProvider: React.FC = ({children}) => {
     }
   },[])
 
-  const forgotChangePassword = useCallback(async (email: string, password :IChangePasswordRequest, code: string) => {
+  const forgotChangePassword = useCallback(async (email: string, password :string, code: string) => {
     try{
       const response = await api.patch(FORGOT_PASSWORD_CHANGE, {email, password, code});
       return true;

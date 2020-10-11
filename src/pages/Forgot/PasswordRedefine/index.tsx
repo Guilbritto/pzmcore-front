@@ -19,7 +19,7 @@ const PasswordRedefine: React.FC = () => {
     async (data: any) => {
       const { email, code } = location.state;
       if(data.newPassword === data.confirmationPassword){
-        await forgotChangePassword(email, {old: data.oldPassword, new: data.newPassword},  code)
+        await forgotChangePassword(email, data.newPassword,  code)
         addToast({
           title: 'Password changed',
           description: 'Your password has been changed successfully',
@@ -50,12 +50,6 @@ const PasswordRedefine: React.FC = () => {
               <h1>Redefine Password</h1>
             </span>
 
-            <Input
-              placeHolder="Old Password"
-              name="oldPassword"
-              type="password"
-              validate={{ required: true }}
-            />
             <Input
               placeHolder="New Password"
               name="newPassword"
