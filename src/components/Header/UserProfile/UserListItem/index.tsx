@@ -5,6 +5,7 @@ import { Container } from './styles';
 
 const UserListItem: React.FC = () => {
   const {signOut, user } = useAuth()
+  
   const handleClick = () => {
     signOut();
   }

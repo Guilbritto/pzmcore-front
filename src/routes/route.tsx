@@ -5,6 +5,7 @@ import {
   RouteProps as ReactRouterProps,
   Redirect,
 } from 'react-router-dom';
+import Template from './Template';
 
 interface RouteProps extends ReactRouterProps {
   isPrivate?: boolean;
@@ -20,11 +21,12 @@ const Route: React.FC<RouteProps> = ({
   
   return (
     <ReactDOMRoute
-      {...rest}
+      {...rest} 
       render={({ location }) => {
-        return isPrivate === !!user ? (
-            <Component />
-        ) : (
+       
+        return isPrivate === !!user ? isPrivate ? (
+          <Template> <Component /></Template>
+        ) : (<Component />) : (
           <Redirect
             to={{
               pathname: isPrivate ? '/' : '/home',
