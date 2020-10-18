@@ -1,16 +1,21 @@
 import React from 'react';
 import {BsList} from 'react-icons/bs'
-import { Container } from './styles';
+import { useModule } from '../../../hooks/ModuleModalContext';
+import {Container} from './styles'
+export interface IModulesProps{
+  onModal: boolean;
+}
+const Modules: React.FC<IModulesProps> = ({onModal}) => {
 
-const Modules: React.FC = () => {
+  const { setIsActive } = useModule()
+
   return (
-    <Container>
-      <div>
+    <Container onModal={onModal}>
+      <div onClick={() => setIsActive((state:boolean) => !state)}>
         <BsList size={32} />
       </div>
       <span>PZM admin</span>
     </Container>
-
   )
 }
 

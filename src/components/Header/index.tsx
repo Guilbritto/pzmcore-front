@@ -7,7 +7,7 @@ import UserProfile from './UserProfile';
 const Header: React.FC = () => {
   
   return <Container >
-    <Modules />
+    <Modules onModal={false} />
     <UserProfile />
   </Container>;
 }

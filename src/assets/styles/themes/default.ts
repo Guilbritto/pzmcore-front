@@ -12,6 +12,6 @@ export default {
   },
   header: {
     color: '#EA9010',
-    background: '#e1e1e1'
+    background: '#5D5D5B'
   }
 };

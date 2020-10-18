@@ -19,7 +19,7 @@ const UserListItem: React.FC = () => {
       <span>{user.email}</span>
       <ul>
         <li>
-          <a href="#" onClick={handleClick}> Sair </a>
+          <span className='link-sair' onClick={handleClick}> Sair </span>
         </li>
       </ul>
 

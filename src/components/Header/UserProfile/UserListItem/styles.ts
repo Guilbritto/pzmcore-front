@@ -32,13 +32,15 @@ export const Container = styled.div`
       li{
         font-size: 12px;
         font-weight: 500;
-        a{
-          text-decoration: none;
-          &:hover{
-            text-decoration: underline;
-          }
-        }
+        
       }
+    }
+  }
+  .link-sair{
+    text-decoration: none;
+    cursor:pointer;
+    &:hover{
+      text-decoration: underline;
     }
   }
 `;

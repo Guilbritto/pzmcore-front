@@ -33,6 +33,12 @@ const Input: React.FC<InputProps> = ({
     }
   }, [errors, name]);
 
+  useEffect(() => { 
+    if (rest.defaultValue) {
+      setFilled(true);
+    }
+  }, [setFilled])
+
   const handleBlur = useCallback(evt => {
     if (evt.target.value.length > 0) {
       setFilled(true);

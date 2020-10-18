@@ -1,7 +1,8 @@
-import styled from 'styled-components';
-import {shade} from 'polished'
+import styled, { css } from 'styled-components';
+import {darken, shade} from 'polished'
+import { IModulesProps } from '.';
 
-export const Container = styled.div`
+export const Container = styled.div<IModulesProps>`
   display: flex;
   align-items: center;
   
@@ -12,11 +13,22 @@ export const Container = styled.div`
     justify-content: center;
     align-items: center;
     cursor: pointer;
-    color: ${props => props.theme.header.color};
-    &:hover{
-      background: ${props => shade(0.2, props.theme.header.background)}
-    }
+
+    ${props => props.onModal && css`
+      color: #5D5D5B;
+      &:hover{
+        background: ${darken(0.1, '#FFF')}
+      } 
+    `}
+
+    ${props => !props.onModal && css`
+      color: ${props => props.theme.header.color};
+      &:hover{
+        background: ${props => shade(0.2, props.theme.header.background)}
+      } 
+    `}
   }
+  
   span{
     margin-left: 6px;
     font-size: 18px;

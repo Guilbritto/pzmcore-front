@@ -13,7 +13,7 @@ const UserProfile: React.FC = () => {
     setIsActive(!isActive)
     setListItems(<UserListItem />);
     setTitle('My account');
-  }, [setIsActive, isActive])
+  }, [setIsActive, isActive, setTitle, setListItems])
   
   return <Container onClick={handleClick}>
     <UserPhoto>
