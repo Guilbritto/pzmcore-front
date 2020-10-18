@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://localhost:3333';
+export const BASE_URL = process.env.REACT_APP_BASE_URL;
 //Login
 export const LOGIN = `${BASE_URL}/sessions`;
 export const FORGOT_PASSWORD = `${BASE_URL}/sessions/forgot`
