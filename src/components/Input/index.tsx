@@ -37,7 +37,7 @@ const Input: React.FC<InputProps> = ({
     if (rest.defaultValue) {
       setFilled(true);
     }
-  }, [setFilled])
+  }, [setFilled, rest.defaultValue])
 
   const handleBlur = useCallback(evt => {
     if (evt.target.value.length > 0) {
